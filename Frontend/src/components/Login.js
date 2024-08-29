@@ -16,7 +16,7 @@ const Login = () => {
  const navigate=useNavigate()
  const isLoading=useSelector((store)=>store.app.isLoading)
 
-const getFornData=async(e)=>{
+const getFormData=async(e)=>{
   e.preventDefault()
   dispatch(setLoading(true))
   const headers={
@@ -47,7 +47,7 @@ const getFornData=async(e)=>{
       catch(error)
       {
         console.log(error)
-        toast.error(error.response.data.message)
+        toast.error(error.response?.data?.message || "Something Went Wrong")
       }
       finally{
         dispatch(setLoading(false))
@@ -69,7 +69,7 @@ const getFornData=async(e)=>{
         setIsLogin(true)
       }
     catch (error) {
-      toast.error(error.response.data.message)
+      toast.error(error?.response?.data?.message || "Something Went Wrong")
     console.log(error);
   }
   finally{
@@ -86,9 +86,9 @@ const getFornData=async(e)=>{
         <img className='w-[100vw] h-[100vh]' src="https://user-images.githubusercontent.com/33485020/108069438-5ee79d80-7089-11eb-8264-08fdda7e0d11.jpg" alt="backgroung-image" />
 
       </div>
-      <form onSubmit={getFornData} className='absolute right-0 left-0 mx-auto my-40 w-3/12 py-7 bg-black flex flex-col justify-center items-center opacity-90 rounded-md'>
+      <form onSubmit={getFormData} className='absolute right-0 left-0 mx-auto my-40 w-3/12 py-7 bg-black flex flex-col justify-center items-center opacity-90 rounded-md'>
         <h1 className='text-white text-2xl font-bold mb-1'>{isLogin?"Login":"Signup"}</h1>
-        <div className='flex flex-col justify-center w-3/5'>
+        <div className='flex flex-col justify-center w-3/5 '>
           {
             !isLogin && (
               <input  className='my-2 outline-none rounded-sm bg-gray-800 p-2 text-white' name='fullName' value={fullName} type="text" placeholder='fullname' onChange={(e)=>setFullName(e.target.value)}/>
