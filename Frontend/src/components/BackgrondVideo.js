@@ -7,10 +7,10 @@ const BackgrondVideo = ({videoId}) => {
   const NowPlaying=useSelector((store)=>store.movie.movieTrailer)
   if(!NowPlaying)return;
   return (
-    <div className='w-[100vw]'>
+    <div className='w-[100vw]   '>
       <iframe
-       className=' w-full aspect-video overflow-hidden'
-        src={`https://www.youtube.com/embed/${NowPlaying.key}?si=fCdnN7oaHIfWn8km&autoplay=1&mute=1&loop=1`}
+       className=' w-full aspect-video overflow-hidden -mt-20'
+        src={`https://www.youtube.com/embed/${NowPlaying.key}?si=fCdnN7oaHIfWn8km&autoplay=1&mute=1&loop=0  `}
         title="YouTube video player"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

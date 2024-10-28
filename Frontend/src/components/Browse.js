@@ -23,11 +23,11 @@ export const Browse = () => {
   useTopRatedMovies();
   useUpComingMovies();
   
-  useEffect(() => {
-    if (!user) {
-      navigate("/");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!user) {
+  //     navigate("/");
+  //   }
+  // }, []);
   return (
     <div className='overflow-y-auto overflow-x-hiddens no-scrollbar'>
       <Header />
@@ -36,7 +36,7 @@ export const Browse = () => {
       ) : (
         <>
           <MainContainer />
-          <MovieContainer />
+          {/* <MovieContainer /> */}
         </>
       )}
     </div>

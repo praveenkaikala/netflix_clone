@@ -39,7 +39,7 @@ const Header = () => {
     dispatch(getToggle())
   }
   return (
-    <div className='absolute z-10 bg-gradient-to-b from-black flex items-center justify-between w-[100%] top-0'>
+    <div className='absolute z-10 bg-gradient-to-b from-black flex items-center justify-between w-[100%] top-0 p-5'>
      
       <img className='w-40' src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png" alt="netflix-logo" />
      {
