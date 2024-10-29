@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import netflixLogo from "../assets/netflix-logo.png"
+import AxiosPrivate from '../auth/AxiosPrivate';
+import toast from 'react-hot-toast';
+import axios from 'axios';
 const Loginpage = () => {
     const { searchParams } = new URL(document.location);
 	const emailValue = searchParams.get("email");
@@ -8,10 +11,20 @@ const Loginpage = () => {
 	const [email, setEmail] = useState(emailValue || "");
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
-
-	const handleSignUp = (e) => {
+    //   axios.defaults.withCredentials=true
+	const handleSignUp = async(e) => {
 		e.preventDefault();
-		// signup({ email, username, password });
+		try {
+            const payload={
+                email,username,password
+            }
+          const res= await  AxiosPrivate.post('api/user/login',payload)
+          toast.success(res.data.message)
+          console.log(res.data)
+        } catch (error) {
+            console.log(error)
+            toast.error("SignIn Failed")
+        }
 	};
 
     return (
