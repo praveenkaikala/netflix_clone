@@ -4,8 +4,8 @@ const jwt=require("jsonwebtoken")
 
 const Register=async (req,res)=>{
     try{
-    const {fullName,email,password}=req.body
-    if(!fullName || !email || !password)
+    const {username,email,password}=req.body
+    if(!username || !email || !password)
         {
             return res.status(401).json({
                 message:"invalid data",
@@ -21,7 +21,7 @@ const Register=async (req,res)=>{
         })
     }
     const hashedPassword=await bcryptjs.hash(password,10)
-    await User.create({fullName,email,password:hashedPassword})
+    await User.create({username,email,password:hashedPassword})
     return res.status(201).json({
         message:"user registered successfully",
         success:"true" 
@@ -65,10 +65,13 @@ const Login=async(req,res)=>{
             const tokenOptions = { expiresIn: '2d' };
     
             const token = jwt.sign(tokenPayload, tokenSecret, tokenOptions);
-        return res.status(200).cookie('token',token,{httpOnly:true}).json({
-            message:`welcome back ${user.fullName}`,
+
+
+             return res.status(200).cookie('netflix-jwt',token,{httpOnly:true,maxAge:20000, sameSite: 'none', // Allows cross-site cookies
+                secure: false}).json({
+            message:`welcome back ${user.username}`,
             user:{
-                fullName:user.fullName,
+                username:user.username,
                 email:user.email
             },
             success:"true"
