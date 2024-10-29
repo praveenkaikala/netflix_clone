@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import netflixLogo from "../../assets/netflix-logo.png";
 import { FaChevronRight } from "react-icons/fa";
 import tv from "../../assets/tv.png"
@@ -13,11 +13,17 @@ import { MdEmail } from "react-icons/md";
 import { FaSquareGithub } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 const AuthScreen = () => {
+    const [email,setEmail]=useState("")
+    const navigate =useNavigate()
+    const handleSubmit=(e)=>{
+        e.preventDefault()
+        navigate(`/signup?email=${email}`)
+    }
   return (
     <div className="hero-bg  relative">
-      <header className="max-w-6xl mx-auto flex items-center justify-between p-4 pb-10 w-full">
+      <header className="max-w-6xl mx-auto flex items-center justify-between p-4 pb-3 w-full">
         <img src={netflixLogo} alt="logo" className="w-52" />
-        <Link to={"/login"} className="text-white bg-red-600 py-1 px-2 rounded">
+        <Link to={"/signin"} className="text-white bg-red-600 py-1 px-2 rounded">
           Sign In
         </Link>
       </header>
@@ -30,15 +36,15 @@ const AuthScreen = () => {
           Ready to watch? Enter your email to create or restart your membership.
         </p>
 
-        <form className="flex flex-col md:flex-row gap-4 w-1/2">
+        <form className="flex flex-col md:flex-row gap-4 w-1/2" onSubmit={handleSubmit}>
           <input
             type="email"
             placeholder="Email address"
             className="p-2 rounded flex-1 bg-black/80 border border-gray-700"
-            // value={email}
-            // onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
-          <button className="bg-red-600 text-xl lg:text-2xl px-2 lg:px-6 py-1 md:py-2 rounded flex justify-center items-center">
+          <button className="bg-red-600 text-xl lg:text-2xl px-2 lg:px-6 py-1 md:py-2 rounded flex justify-center items-center" type="submit"> 
             Get Started
             <FaChevronRight className="size-8 md:size-10" />
           </button>
