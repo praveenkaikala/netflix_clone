@@ -84,10 +84,13 @@ const Login=async(req,res)=>{
 }
 
 const Logout = async (req,res) => {
-    return res.status(200).cookie("token", "", {expiresIn:new Date(Date.now()), httpOnly:true}).json({
-        message:"User logged out successfully.",
-        success:true,
-    });
+    try {
+		res.clearCookie("jwt-netflix");
+		res.status(200).json({ success: true, message: "Logged out successfully" });
+	} catch (error) {
+		console.log("Error in logout controller", error.message);
+		res.status(500).json({ success: false, message: "Internal server error" });
+	}
 }
 
 
