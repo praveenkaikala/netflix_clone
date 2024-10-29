@@ -1,17 +1,28 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import netflixLogo from "../assets/netflix-logo.png"
+import AxiosPrivate from "../auth/AxiosPrivate";
+import toast from "react-hot-toast";
 const SignUpPage = () => {
 	const { searchParams } = new URL(document.location);
 	const emailValue = searchParams.get("email");
-
 	const [email, setEmail] = useState(emailValue || "");
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
-
-	const handleSignUp = (e) => {
+    const navigate=useNavigate()
+	const handleSignUp =async (e) => {
 		e.preventDefault();
-		// signup({ email, username, password });
+		try {
+            const payload={
+                email,username,password
+            }
+            const res=await AxiosPrivate.post("/api/user/register",payload)
+            toast.success("Registration Successfull")
+           navigate(`/signin?email=${email}`)
+        } catch (error) {
+            console.log(error)
+            toast.error("Registration Failed")
+        }
 	};
 
 	return (
