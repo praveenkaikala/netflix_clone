@@ -1,10 +1,26 @@
 const  fetchFromTMDB =require( "../service/tmdbService");
+const axios=require('axios')
+const dotenv=require("dotenv")
+dotenv.config()
+const options = {
+    headers: {
+        accept: "application/json",
+        Authorization: "Bearer " +process.env.TMDB_KEY,
+    },
+};
+const AxiosPrivate = axios.create({
+    baseURL: 'https://api.themoviedb.org/3', 
+    timeout: 10000, // Set to 5 seconds or adjust as needed
+    headers: { 
+      'Content-Type': 'application/json',
+      Authorization: "Bearer " +process.env.TMDB_KEY,
+    },
+  });
  const  getTrendingMovie=async(req, res) =>{
 	try {
-		const data = await fetchFromTMDB("https://api.themoviedb.org/3/trending/movie/day?language=en-US");
-		const randomMovie = data.results[Math.floor(Math.random() * data.results?.length)];
-
-		res.json({ success: true, content: randomMovie });
+		const data = await AxiosPrivate.get("/movie/now_playing");
+          
+		res.json({ success: true, content: data });
 	} catch (error) {
 		res.status(500).json({ success: false, message: "Internal Server Error" });
         console.log(error)

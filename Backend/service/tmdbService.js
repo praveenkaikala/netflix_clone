@@ -8,7 +8,7 @@ dotenv.config()
 			Authorization: "Bearer " +process.env.TMDB_KEY,
 		},
 	};
-
+console.log(options)
 	const response = await axios.get(url, options);
 
 	if (response.status !== 200) {
