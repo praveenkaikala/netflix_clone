@@ -1,5 +1,5 @@
  export const API_KEY=" http://localhost:8000/api/v1/user"
-
+export const MINI_URL_MOVIES="https://api.themoviedb.org/3"
  export const NOW_PLAYING="https://api.themoviedb.org/3/movie/now_playing"
  export const POPULAR_MOVIES="https://api.themoviedb.org/3/movie/popular"
  export const TopRated_movies="https://api.themoviedb.org/3/movie/top_rated"
@@ -12,3 +12,6 @@
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwODU5ZjU4NjBhMjczMmU4MTNmYTFlMWI1YWRjM2NhNyIsIm5iZiI6MTczMDIxMzQxMy44MDM3NTEsInN1YiI6IjY2NjUxY2I1YTJiNTYwOGZiOTEzNzVhOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.NBoBsZRYumeYOsYHM4FnASraZknTmOcUFOQr9c-i4Xw'
     }
   };
+
+  export const MOVIE_CATEGORIES = ["now_playing", "top_rated", "popular", "upcoming"];
+export const TV_CATEGORIES = ["airing_today", "on_the_air", "popular", "top_rated"];

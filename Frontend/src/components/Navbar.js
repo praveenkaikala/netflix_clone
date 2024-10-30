@@ -4,8 +4,14 @@ import netflixLogo from '../assets/netflix-logo.png'
 import avatar from '../assets/avatar1.png'
 import { FaSearch } from 'react-icons/fa'
 import { MdLogout, MdMenu } from 'react-icons/md'
+import { useDispatch } from 'react-redux'
+import { setCatagory } from '../redux/userSlice'
 
 const Navbar = () => {
+    const dispatch=useDispatch()
+    const catagoryChange=(val)=>{
+        dispatch(setCatagory(val))
+    }
     const [mobileToggle,setMobileToggle]=useState(false)
     const toggleMobileMenu = () => setMobileToggle(!mobileToggle);
   return (
@@ -15,10 +21,10 @@ const Navbar = () => {
             <img src={netflixLogo} alt="logo" className='w-52 sm:w-40'/>
             </Link>
             <div className='hidden sm:flex gap-3 items-center'>
-            <Link to={'/browse'} className='hover:underline'>
+            <Link to={'/browse'} className='hover:underline' onClick={()=>catagoryChange("movie")}>
             Movies 
             </Link>
-            <Link to={'/browse'} className='hover:underline'>
+            <Link to={'/browse'} className='hover:underline' onClick={()=>catagoryChange("tv")}>
             Tv Shows 
             </Link>
             <Link to={'/history'} className='hover:underline'>
@@ -40,10 +46,10 @@ const Navbar = () => {
         {mobileToggle && (
     <div className='w-full sm:hidden mt-4 z-50 bg-black border rounded border-gray-800 '>
             
-            <Link to={'/browse'} className='hover:underline p-2 block'>
+            <Link to={'/browse'} className='hover:underline p-2 block' onClick={()=>catagoryChange("movie")}>
             Movies 
             </Link>
-            <Link to={'/browse'} className='hover:underline p-2 block'>
+            <Link to={'/browse'} className='hover:underline p-2 block' onClick={()=>catagoryChange("tv")}>
             Tv Shows 
             </Link>
             <Link to={'/history'} className='hover:underline p-2 block'>
