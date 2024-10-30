@@ -9,6 +9,6 @@
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwODU5ZjU4NjBhMjczMmU4MTNmYTFlMWI1YWRjM2NhNyIsInN1YiI6IjY2NjUxY2I1YTJiNTYwOGZiOTEzNzVhOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.kBbSnhFrvdz4jGPPH3b_6XcZvnaFRaCw2W9l9tL2uRQ'
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwODU5ZjU4NjBhMjczMmU4MTNmYTFlMWI1YWRjM2NhNyIsIm5iZiI6MTczMDIxMzQxMy44MDM3NTEsInN1YiI6IjY2NjUxY2I1YTJiNTYwOGZiOTEzNzVhOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.NBoBsZRYumeYOsYHM4FnASraZknTmOcUFOQr9c-i4Xw'
     }
   };

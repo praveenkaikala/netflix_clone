@@ -1,31 +1,44 @@
 const  fetchFromTMDB =require( "../service/tmdbService");
 const axios=require('axios')
-const dotenv=require("dotenv")
-dotenv.config()
-const options = {
-    headers: {
-        accept: "application/json",
-        Authorization: "Bearer " +process.env.TMDB_KEY,
-    },
-};
+require('dotenv').config(); // Make sure to use dotenv like this at the top
+
 const AxiosPrivate = axios.create({
-    baseURL: 'https://api.themoviedb.org/3', 
-    timeout: 10000, // Set to 5 seconds or adjust as needed
-    headers: { 
-      'Content-Type': 'application/json',
-      Authorization: "Bearer " +process.env.TMDB_KEY,
+    baseURL: 'https://api.themoviedb.org/3',
+    timeout: 1500000, // 10 seconds
+    headers: {
+        'Content-Type': 'application/json',
+        Authorization: "Bearer " + process.env.TMDB_KEY,
     },
-  });
- const  getTrendingMovie=async(req, res) =>{
-	try {
-		const data = await AxiosPrivate.get("/movie/now_playing");
-          
-		res.json({ success: true, content: data });
-	} catch (error) {
-		res.status(500).json({ success: false, message: "Internal Server Error" });
-        console.log(error)
-	}
-}
+});
+
+const getTrendingMovie = async (req, res) => {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => {
+        controller.abort();
+    }, 20000); // 10 seconds
+
+    try {
+        const response = await fetch("https://api.themoviedb.org/3/movie/now_playing", {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: "Bearer " + process.env.TMDB_KEY,
+            },
+            signal: controller.signal,
+        });
+        
+        clearTimeout(timeout);
+        
+        if (!response.ok) {
+            throw new Error("Failed to fetch data from TMDB API");
+        }
+        
+        const data = await response.json();
+        res.json({ success: true, content: data });
+    } catch (error) {
+        console.error("Fetch error:", error);
+        res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
+};
 
  const getMovieTrailers=async(req, res)=> {
 	const { id } = req.params;

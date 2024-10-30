@@ -36,3 +36,24 @@ code {
   background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), 
                     url("./assets/hero.png");
 }
+.scale-responsive {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+@media (min-width: 640px) { /* Small screens (e.g., tablets) */
+  .scale-responsive {
+    transform: translate(-50%, -50%) scale(1.9);
+  }
+}
+
+@media (min-width: 1024px) { /* Medium screens (e.g., small laptops) */
+  .scale-responsive {
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+}
+
+@media (min-width: 1280px) { /* Large screens (e.g., desktops) */
+  .scale-responsive {
+    transform: translate(-50%, -50%) scale(1.7);
+  }
+}
