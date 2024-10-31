@@ -27,9 +27,9 @@ const Navbar = () => {
             <Link to={'/browse'} className='hover:underline' onClick={()=>catagoryChange("tv")}>
             Tv Shows 
             </Link>
-            <Link to={'/history'} className='hover:underline'>
+            {/* <Link to={'/history'} className='hover:underline'>
             Search History 
-            </Link>
+            </Link> */}
             </div>
         </div>
         <div className='flex gap-2 items-center z-50'>
@@ -52,9 +52,9 @@ const Navbar = () => {
             <Link to={'/browse'} className='hover:underline p-2 block' onClick={()=>catagoryChange("tv")}>
             Tv Shows 
             </Link>
-            <Link to={'/history'} className='hover:underline p-2 block'>
+            {/* <Link to={'/history'} className='hover:underline p-2 block'>
             Search History 
-            </Link>
+            </Link> */}
             </div>
         )}
     </div>
