@@ -7,6 +7,7 @@ import SignUpPage from './pages/SignUpPage';
 import HomePage from './pages/home/HomePage';
 import Broswerpage from './pages/home/Broswerpage';
 import SearchPage from './pages/SearchPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       <Route path='/' element={<HomePage/>}/>
       <Route path='/browse' element={<Broswerpage/>}/>
       <Route path='/search' element={<SearchPage/>}/>
+      <Route path='*' element={<NotFoundPage/>}/>
     </Routes>
     <Toaster/>
     </div>
