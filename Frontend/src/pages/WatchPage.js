@@ -91,7 +91,7 @@ useEffect(()=>{
         }
 	};
     scrollTop()
-},[])
+},[id])
 	if (!content) {
 		return (
 			<div className='bg-black text-white h-screen'>
