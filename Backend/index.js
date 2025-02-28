@@ -12,7 +12,7 @@ dotenv.config({
 })
 app.use(cookieParser());
 const corsOptions={
-    origin:"http://localhost:3000",
+    origin:["http://localhost:3000","https://stately-crepe-272455.netlify.app"],
     credentials:true
 }
 app.use(cors())

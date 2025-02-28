@@ -14,17 +14,16 @@ import WatchPage from './pages/WatchPage';
 function App() {
   return (
     <div>
-    {/* <Body/> */}
-    <Routes>
-      <Route path='/signin' element={<Loginpage/>}/>
+     <Routes>
+       <Route path='/signin' element={<Loginpage/>}/>
       <Route path='/signup' element={<SignUpPage/>}/>
-      <Route path='/' element={<HomePage/>}/>
-      <Route path='/browse' element={<Broswerpage/>}/>
+     <Route path='/' element={<HomePage/>}/>
+       <Route path='/browse' element={<Broswerpage/>}/>
       <Route path='/search' element={<SearchPage/>}/>
       <Route path='/watch/:id' element={<WatchPage/>}/>
       <Route path='*' element={<NotFoundPage/>}/>
     </Routes>
-    <Toaster/>
+     <Toaster/>
     </div>
   );
 }
