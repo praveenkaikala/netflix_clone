@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import netflixLogo from "../assets/netflix-logo.png"
 import AxiosPrivate from '../auth/AxiosPrivate';
 import toast from 'react-hot-toast';
@@ -7,7 +7,7 @@ import axios from 'axios';
 const Loginpage = () => {
     const { searchParams } = new URL(document.location);
 	const emailValue = searchParams.get("email");
-
+	const navigate=useNavigate()
 	const [email, setEmail] = useState(emailValue || "");
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
@@ -18,8 +18,11 @@ const Loginpage = () => {
             const payload={
                 email,username,password
             }
-          const res= await  AxiosPrivate.post('api/user/login',payload)
+          const res= await  axios.post('http://localhost:8000/api/user/login',payload,{
+			withCredentials:true
+		  })
           toast.success(res.data.message)
+		  navigate('/browse')
           console.log(res.data)
         } catch (error) {
             console.log(error)
