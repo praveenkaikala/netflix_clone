@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const AxiosPrivate = axios.create({
-  baseURL:'https://netflix-clone-4idd.onrender.com', 
+  baseURL:'http://localhost:8000', 
   timeout: 100000, 
   headers: { 'Content-Type': 'application/json' 
 

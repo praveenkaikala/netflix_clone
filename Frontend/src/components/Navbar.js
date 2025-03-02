@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import netflixLogo from '../assets/netflix-logo.png'
 import avatar from '../assets/avatar1.png'
 import { FaSearch } from 'react-icons/fa'
 import { MdLogout, MdMenu } from 'react-icons/md'
 import { useDispatch } from 'react-redux'
 import { setCatagory } from '../redux/userSlice'
+import toast from 'react-hot-toast'
+import AxiosPrivate from '../auth/AxiosPrivate'
 
 const Navbar = () => {
     const dispatch=useDispatch()
@@ -13,6 +15,7 @@ const Navbar = () => {
         dispatch(setCatagory(val))
     }
     const [mobileToggle,setMobileToggle]=useState(false)
+    const navigate=useNavigate()
     const toggleMobileMenu = () => setMobileToggle(!mobileToggle);
   return (
     <div className='max-w-6xl mx-auto flex flex-wrap justify-between p-4 h-20 w-full'>
@@ -37,7 +40,16 @@ const Navbar = () => {
 					<FaSearch className='size-6 cursor-pointer' />
 				</Link>
 				<img src={avatar} alt='Avatar' className='h-8 rounded cursor-pointer' />
-				<MdLogout className='size-6 cursor-pointer' />
+				<MdLogout className='size-6 cursor-pointer' onClick={async()=>{
+          try {
+           await AxiosPrivate.get('/api/user/logout');
+            toast.success("Logout Successfully")
+            navigate("/")
+          } catch (error) {
+            console.log(error)
+            toast.error("Logout Failed")
+          }
+        }} />
 				<div className='sm:hidden'>
 					<MdMenu className='size-6 cursor-pointer' onClick={toggleMobileMenu} />
 				</div>

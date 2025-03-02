@@ -18,7 +18,7 @@ const Loginpage = () => {
             const payload={
                 email,username,password
             }
-          const res= await  axios.post('http://localhost:8000/api/user/login',payload,{
+          const res= await  AxiosPrivate.post('/api/user/login',payload,{
 			withCredentials:true
 		  })
           toast.success(res.data.message)

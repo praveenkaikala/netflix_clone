@@ -12,7 +12,7 @@ import { MOVIE_CATEGORIES, NOW_PLAYING, OPTIONS, TV_CATEGORIES } from "../../uti
 import MovieSlider from "../../components/MovieSlider";
 import Skeleton from "../../styles/Skeleton";
 const Broswerpage = () => {
-    const [nowPlaying,setNowPlaying]=useState(null)
+  const [nowPlaying,setNowPlaying]=useState(null)
 const dispatch=useDispatch()
 const {category}=useSelector((store)=>store.app)
 const NowPlayingMovies=async()=>{
@@ -83,7 +83,7 @@ const NowPlayingMovies=async()=>{
 
         <div className="flex mt-8">
           <Link
-            to={`/watch/`}
+            to={`/watch/${nowPlaying.id}`}
             className="bg-white hover:bg-white/80 text-black font-bold py-2 px-4 rounded mr-4 flex
 							 items-center"
           >
@@ -92,7 +92,7 @@ const NowPlayingMovies=async()=>{
           </Link>
 
           <Link
-            to={`/watch/`}
+            to={`/watch/${nowPlaying.id}`}
             className="bg-gray-500/70 hover:bg-gray-500 text-white py-2 px-4 rounded flex items-center"
           >
             <FaInfo className="size-6 mr-2" />
