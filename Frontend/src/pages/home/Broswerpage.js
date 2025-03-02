@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getNowPlatingMoives } from "../../redux/movieSlice";
 import { MOVIE_CATEGORIES, NOW_PLAYING, OPTIONS, TV_CATEGORIES } from "../../utils/Constant";
 import MovieSlider from "../../components/MovieSlider";
+import Skeleton from "../../styles/Skeleton";
 const Broswerpage = () => {
     const [nowPlaying,setNowPlaying]=useState(null)
 const dispatch=useDispatch()
@@ -47,6 +48,7 @@ const NowPlayingMovies=async()=>{
     <div className="relative h-screen w-screen overflow-auto bg-black text-white">
       <Navbar />
       {nowPlaying?(
+        <>
         <div>
          <ReactPlayer
          url={`https://www.youtube.com/watch?v=${nowPlaying.key}`}
@@ -100,13 +102,7 @@ const NowPlayingMovies=async()=>{
       </div>
       
         </div>
-      ):(
-        <div className="w-screen h-screen text-center">
-            loading
-            </div>
-
-      )}
-    <div className="relative top-[79%] h-full w-full flex flex-col gap-10 p-10 ">
+        <div className="relative top-[79%] h-full w-full flex flex-col gap-10 p-10 ">
         {category=="movie"?(
 <>
 {MOVIE_CATEGORIES.map((cat,ind)=> <div key={ind}>
@@ -125,8 +121,16 @@ const NowPlayingMovies=async()=>{
      
         )}
       </div> 
+      </>
+      ):(
+        <Skeleton/>
+
+      )}
     </div>
   );
+// return(
+//   <Skeleton/>
+// )
 };
 
 export default Broswerpage;
