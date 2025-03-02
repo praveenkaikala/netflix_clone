@@ -12,7 +12,7 @@ dotenv.config({
 })
 app.use(cookieParser());
 const corsOptions={
-    origin:['http://localhost:3000', 'https://stately-crepe-272455.netlify.app'],
+    origin:['http://localhost:3000', 'https://stately-crepe-272455.netlify.app','https://keen-sable-409819.netlify.app'],
     credentials:true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
