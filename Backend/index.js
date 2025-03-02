@@ -12,12 +12,12 @@ dotenv.config({
 })
 app.use(cookieParser());
 const corsOptions={
-    origin:['http://localhost:3000/', 'https://stately-crepe-272455.netlify.app/'],
+    origin:['http://localhost:3000', 'https://stately-crepe-272455.netlify.app'],
     credentials:true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }
-app.use(cors())
+app.use(cors(corsOptions))
 app.use(express.json())
 app.use('/api/user',userRoutes)
 app.use('/api/movies',movieRoutes)
@@ -30,32 +30,32 @@ console.log(`server running on port ${process.env.PORT}`)
 })
 connectDatabase()
 
-const getTrendingMovie = async (req, res) => {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => {
-        controller.abort();
-    }, 20000); // 10 seconds
+// const getTrendingMovie = async (req, res) => {
+//     const controller = new AbortController();
+//     const timeout = setTimeout(() => {
+//         controller.abort();
+//     }, 20000); // 10 seconds
 
-    try {
-        const response = await axios.get("https://api.themoviedb.org/3/movie/now_playing", {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: "Bearer " + process.env.TMDB_KEY,
-            },
-            signal: controller.signal,
-        });
+//     try {
+//         const response = await axios.get("https://api.themoviedb.org/3/movie/now_playing", {
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 Authorization: "Bearer " + process.env.TMDB_KEY,
+//             },
+//             signal: controller.signal,
+//         });
         
-        clearTimeout(timeout);
+//         clearTimeout(timeout);
         
-        if (!response.ok) {
-            throw new Error("Failed to fetch data from TMDB API");
-        }
+//         if (!response.ok) {
+//             throw new Error("Failed to fetch data from TMDB API");
+//         }
         
-        const data = await response.json();
-       console.log(data)
-    } catch (error) {
-        console.error("Fetch error:", error);
+//         const data = await response.json();
+//        console.log(data)
+//     } catch (error) {
+//         console.error("Fetch error:", error);
        
-    }
-};
-getTrendingMovie()
+//     }
+// };
+// getTrendingMovie()

@@ -36,6 +36,7 @@ catch(err)
 
 const Login=async(req,res)=>{
     try {
+        console.log('login calling')
         const {email,password}=req.body
         if(!email || !password)
             {
